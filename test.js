@@ -10,8 +10,6 @@ mockgoose.prepareStorage().then(function() {
 	mongoose.connection.on('connected', () => {
 	  console.log('db connection is now open on port '+mongoose.connection.port);
 
-    debugger;
-
     var users = require('./src/mongo');
     console.log('Creating Joe');
     users.create({

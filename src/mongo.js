@@ -4,7 +4,12 @@ const mongoose = require('mongoose'),
       db       = 'mongodb://localhost/mongounit',
       mUser    = require('./model.js');
 
+// 
+//  Added to avoid mongoose warning about deprecated promise libraray
+//     but then promises don't work at all... D'OH!
+//
 //mongoose.Promise = global.Promise;
+//
 
 //mongoose.connect(db);
 
@@ -12,18 +17,14 @@ const mongoose = require('mongoose'),
 module.exports.create = function(user) {
     var u = new mUser(user);
     var savePromise = u.save((err, jUser) => {
-      debugger;
       if(err) {
         console.log('Error Saving '+user.name,err);
-//        reject(err);
       } else {
         console.log(user.name+' Saved Successfully');
-//        resolve(u._id);
       }
     });
-    debugger;
+    // debugger; // breakpoint to analyze promise for resolving mongoose warning
     return savePromise;
-//  });
 }
 
 module.exports.list = function(query) {
