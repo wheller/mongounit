@@ -8,7 +8,7 @@ mockgoose.prepareStorage().then(function() {
   console.log('Storage Prepared');
 	mongoose.connect('mongodb://localhost/mongounit');
 	mongoose.connection.on('connected', () => {
-	  console.log('db connection is now open');
+	  console.log('db connection is now open on port '+mongoose.connection.port);
 
     debugger;
 
